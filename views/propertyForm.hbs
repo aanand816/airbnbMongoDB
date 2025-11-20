@@ -1,0 +1,56 @@
+<h2>{{title}}</h2>
+
+{{#if errors.length}}
+  <div class="error-messages">
+    {{#each errors}}
+      <p class="error">{{this.msg}}</p>
+    {{/each}}
+  </div>
+{{/if}}
+
+<form method="POST" class="property-form">
+  <div class="form-group">
+    <label for="id">Property ID: <span class="required">*</span></label>
+    <input type="text" id="id" name="id" value="{{property.id}}" {{#if property}}readonly{{/if}} required>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Property Name: <span class="required">*</span></label>
+    <input type="text" id="name" name="name" value="{{property.name}}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="hostId">Host ID: <span class="required">*</span></label>
+    <input type="text" id="hostId" name="hostId" value="{{property.hostId}}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="hostName">Host Name: <span class="required">*</span></label>
+    <input type="text" id="hostName" name="hostName" value="{{property.hostName}}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="country">Country: <span class="required">*</span></label>
+    <input type="text" id="country" name="country" value="{{property.country}}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Price: <span class="required">*</span></label>
+    <input type="number" step="0.01" id="price" name="price" value="{{property.price}}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="availability365">Availability (days): <span class="required">*</span></label>
+    <input type="number" id="availability365" name="availability365" value="{{property.availability365}}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="propertyType">Property Type: <span class="required">*</span></label>
+    <input type="text" id="propertyType" name="propertyType" value="{{property.propertyType}}" required>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn-submit">{{#if property}}Update Property{{else}}Add Property{{/if}}</button>
+    <a href="/viewData" class="btn-cancel">Cancel</a>
+  </div>
+</form>
