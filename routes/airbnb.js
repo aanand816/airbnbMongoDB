@@ -4,7 +4,7 @@ const controller = require('../controllers/airbnbController');
 const { body } = require('express-validator');
 
 // HOME PAGE (optional, direct to index or redirect)
-router.get('/', (req, res) => res.render('index', { title: "Express" }));
+router.get('/', (req, res) => res.render('index', { title: "Airbnb" }));
 
 // Main listing and filtered views
 router.get('/viewData', controller.listAll);
