@@ -27,6 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 app.use('/', airbnbRoutes);
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Express app listening at http://localhost:${PORT}`);
-});
+
+// Only start server if not in Vercel environment
+if (process.env.VERCEL !== '1') {
+    app.listen(PORT, () => {
+        console.log(`Express app listening at http://localhost:${PORT}`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;
