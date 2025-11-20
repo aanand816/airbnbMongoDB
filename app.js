@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars');
 require('dotenv').config();
 const connectDB = require('./config/database');
 const airbnbRoutes = require('./routes/airbnb');
-
+app.use(express.static('public'));
 const app = express();
 const path = require('path');
 app.set('views', path.join(__dirname, 'views'));
