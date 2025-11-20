@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const connectDB = require('./config/database');
 const airbnbRoutes = require('./routes/airbnb');
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,11 +23,12 @@ app.engine('.hbs', exphbs.engine({
 }));
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: true }));
+
 connectDB();
 app.use('/', airbnbRoutes);
-const PORT = process.env.PORT || 3000;
 
-// Only start server if not in Vercel environment
+const PORT = process.env.PORT || 3000;
+// Vercel exports the app; local can run hard-coded
 if (process.env.VERCEL !== '1') {
     app.listen(PORT, () => {
         console.log(`Express app listening at http://localhost:${PORT}`);
