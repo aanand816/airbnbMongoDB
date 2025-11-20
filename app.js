@@ -1,11 +1,14 @@
 const express = require('express');
+const path = require('path');
 const exphbs = require('express-handlebars');
 require('dotenv').config();
+
 const connectDB = require('./config/database');
 const airbnbRoutes = require('./routes/airbnb');
-app.use(express.static('public'));
+
 const app = express();
-const path = require('path');
+
+app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs.engine({
     extname: '.hbs',
@@ -20,13 +23,10 @@ app.engine('.hbs', exphbs.engine({
     }
 }));
 app.set('view engine', 'hbs');
-app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
-
 connectDB();
-
 app.use('/', airbnbRoutes);
-
-app.listen(process.env.PORT, () => {
-    console.log(`Express app listening at http://localhost:${process.env.PORT}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Express app listening at http://localhost:${PORT}`);
 });
