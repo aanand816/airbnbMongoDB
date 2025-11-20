@@ -5,6 +5,8 @@ const connectDB = require('./config/database');
 const airbnbRoutes = require('./routes/airbnb');
 
 const app = express();
+const path = require('path');
+app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs.engine({
     extname: '.hbs',
     helpers: {
